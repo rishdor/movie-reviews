@@ -1,0 +1,70 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 1rem;
+}
+
+#container {
+    width: 90%;
+    margin: auto;
+}
+
+header, section {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+
+header {
+    background-color: rgb(255, 228, 196);
+}
+
+#all-movies {
+    background-color: rgb(232, 250, 255);
+}
+
+#movie-details {
+    background-color: rgb(214, 255, 214);
+}
+
+.hidden {
+    display: none;
+}
+
+h1, h2, h3 {
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+h3 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+ul {
+    margin-left: 2rem;
+    line-height: 150%;
+}
+
+ul#errors {
+    color: red;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+li {
+    list-style: disc outside;
+}
+
+.message {
+    font-style: italic;
+}
