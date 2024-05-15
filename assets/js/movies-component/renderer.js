@@ -1,8 +1,16 @@
+import { loadReviews } from "../reviews-component/handler.js";
+
 function renderMovies(movies){
-    var $target = document.querySelector('#all-movies ul')
+    var $target = document.querySelector('#all-movies ul');
     movies.forEach(movie => {
-        $target.insertAdjacentHTML("beforeend", `<li value="${movie.id}">${movie.name}</li>`);
+        var li = document.createElement('li');
+        li.textContent = movie.name;
+        li.value = movie.id;
+        li.addEventListener('click', function() {
+            loadReviews(movie);
+        });
+        $target.appendChild(li);
     });
 }
 
-export{renderMovies}
+export { renderMovies };
