@@ -11,10 +11,11 @@ use Illuminate\Queue\SerializesModels;
 
 class ThankYou extends Mailable
 {
-    use Queueable, SerializesModels;
-
     private $movie;
     private $review;
+
+    use Queueable, SerializesModels;
+
     /**
      * Create a new message instance.
      */
@@ -30,7 +31,7 @@ class ThankYou extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Thank You for leaving the review',
+            subject: 'Thank you for your review',
         );
     }
 
@@ -41,9 +42,7 @@ class ThankYou extends Mailable
     {
         return new Content(
             view: 'thank-you-mail',
-            with: ["movie" => $this -> movie,
-                    "review" => $this -> review
-            ]
+            with: ["movie" => $this -> movie, "review" => $this -> review]
         );
     }
 

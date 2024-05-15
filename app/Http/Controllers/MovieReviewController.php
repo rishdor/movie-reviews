@@ -8,6 +8,8 @@ use App\Models\Review;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ThankYou;
 
 class MovieReviewController extends Controller
 {
@@ -48,7 +50,16 @@ class MovieReviewController extends Controller
 
             $review->save();
 
+            $this -> sendMail($review, $movie);
+
             return ['review' => $review];
         }
+    }
+
+    function sendMail($movie, $review) {
+        Log::info("sending email");
+
+        Mail::to($review -> email)
+            -> send(new ThankYou($movie, $review));
     }
 }
