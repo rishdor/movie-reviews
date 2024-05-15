@@ -6,7 +6,6 @@ var currentMovie;
 function loadReviews(movie){
     clearErrors();
     currentMovie = movie;
-    console.log(currentMovie)
     fetchFromServer("GET", `movies/${movie.id}/reviews`)
         .then(json => {
             const reviews = json.data;
