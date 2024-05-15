@@ -1,4 +1,4 @@
-import { getApiUrl } from "../config.js";
+import { getApiUrl } from "./config.js";
 
 function fetchFromServer(method, endpoint, body = null) {
     return fetch(getApiUrl(endpoint), buildOptions(method, body))
