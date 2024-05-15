@@ -11,7 +11,6 @@ use Illuminate\Queue\SerializesModels;
 
 class ThankYou extends Mailable
 {
-    private $movie;
     private $review;
 
     use Queueable, SerializesModels;
@@ -19,9 +18,8 @@ class ThankYou extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct($movie, $review)
+    public function __construct($review)
     {
-        $this -> movie = $movie;
         $this -> review = $review;
     }
 
@@ -42,7 +40,7 @@ class ThankYou extends Mailable
     {
         return new Content(
             view: 'thank-you-mail',
-            with: ["movie" => $this -> movie, "review" => $this -> review]
+            with: ["review" => $this -> review]
         );
     }
 

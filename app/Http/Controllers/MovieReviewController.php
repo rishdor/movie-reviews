@@ -50,16 +50,21 @@ class MovieReviewController extends Controller
 
             $review->save();
 
-            $this -> sendMail($review, $movie);
+            Log::info("Review added");
+
+            $this -> sendMail($review);
 
             return ['review' => $review];
         }
     }
 
-    function sendMail($movie, $review) {
+    function sendMail($review) {
         Log::info("sending email");
 
-        Mail::to($review -> email)
-            -> send(new ThankYou($movie, $review));
+        $mail = new ThankYou($review);
+
+        Mail::to($review -> email) -> send($mail);
+
+        Log::info("Email sent");
     }
 }

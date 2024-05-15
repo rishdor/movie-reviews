@@ -11,7 +11,7 @@
     <h3>Review details</h3>
 
     <ul>
-        <li>Movie title: {{$movie -> name }}</li>
+        <li>Movie title: {{$review -> movieName -> name }}</li>
         <li>Message: {{ $review -> message }}</li>
         <li>Rating: {{$review -> rating}} starts</li>
     </ul>

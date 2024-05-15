@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Review extends Model
 {
     use HasFactory;
+
+    public function movieName()
+    {
+        return $this->belongsTo(Movie::class, 'movie_id', 'id');
+    }
 }
