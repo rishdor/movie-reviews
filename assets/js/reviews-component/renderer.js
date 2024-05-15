@@ -10,10 +10,25 @@ function renderReviews(reviews){
         
         $template.querySelector(".email").textContent = review.email;
         $template.querySelector('.message').textContent = review.message;
-        $template.querySelector('.rating').textContent = review.rating;
+        $template.querySelector('.rating').textContent = "🌟".repeat(review.rating);
 
         $target.insertAdjacentHTML("beforeend", $template.outerHTML);
     });
 }
 
-export{renderReviews}
+function clearErrors() {
+    const $ul = document.querySelector("#errors");
+    $ul.innerHTML = "";
+}
+
+function renderErrors(errors) {
+    const $ul = document.querySelector("#errors");
+    
+    for (const field in errors) {
+        for (const error of errors[field]) {
+            $ul.innerHTML += `<li>${error}</li>`;
+        }
+    }
+}
+
+export{renderReviews, clearErrors, renderErrors}
