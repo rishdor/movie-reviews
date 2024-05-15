@@ -5,30 +5,50 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Movie;
 use App\Models\Review;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
 
 class MovieReviewController extends Controller
 {
     function all()
     {
+        Log::info("Retrieving all movies...");
         $movies = Movie::all();
         return ["data" => $movies];
     }
 
     function reviews(Movie $movie){
+        Log::info("Retrieving all reviews for movie \"{$movie->name}\"...");
         $reviews = Review::where('movie_id', $movie->id)->get();
         return ["data" => $reviews];
     }
 
     function addReview(Request $request, Movie $movie){
-        $review = new Review();
+        $rules = [
+            "email" => "string|email|required",
+            "message" => "string|min:5|max:255|required",
+            "rating" => "numeric|min:1|max:5|required"
+        ];
 
-        $review->movie_id = $movie->id;
-        $review->email = $request->email;
-        $review->message = $request->message;
-        $review->rating = $request->rating;
+        $validator = Validator::make($request -> all(), $rules);
 
-        $review->save();
+        if ($validator -> fails()) {
+            Log::warning("Input validation errors occured");
 
-        return ['review' => $review];
+            return response() -> json (["errors" => $validator -> errors()],
+                Response::HTTP_UNPROCESSABLE_ENTITY);
+        } else {
+            $review = new Review();
+
+            $review->movie_id = $movie->id;
+            $review->email = $request->email;
+            $review->message = $request->message;
+            $review->rating = $request->rating;
+
+            $review->save();
+
+            return ['review' => $review];
+        }
     }
 }
