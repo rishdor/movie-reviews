@@ -4,7 +4,7 @@ This web application allows users to view and leave reviews for movies in the da
 
 ## Project Structure
 
-- **Main Branch**: Contains the server-side code implemented in PHP using the Laravel framework.
+- **Server Branch**: Contains the server-side code implemented in PHP using the Laravel framework.
 - **Client Branch**: Contains the client-side code with HTML, CSS, and JavaScript (ES6 modules).
 
 ## Features
